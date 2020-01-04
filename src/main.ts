@@ -1,16 +1,12 @@
 import { LibraryLoader } from 'war3-library-loader';
-import { addScriptHook, MapPlayer, Timer, Unit } from 'w3ts';
-import { testFunction } from 'other';
+import { MapPlayer, Timer, Unit } from 'w3ts';
 
 function tsMain() {
   const unit = new Unit(MapPlayer.fromIndex(0), FourCC("hfoo"), 0, 0, 270);
-  unit.name = "TypeScript single file";
 
   new Timer().start(1.00, true, () => {
     unit.color = ConvertPlayerColor(math.random(0, bj_MAX_PLAYERS));
   });
-
-  testFunction();
 
   print("Welcome to ttay24 TypeScript!");
 }
