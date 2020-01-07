@@ -2,19 +2,22 @@
 package.path = package.path .. ";dist/?.lua"
 
 -- TEST
-function scandir(directory)
-  local i, t, popen = 0, {}, io.popen
-  local pfile = popen('ls -a "'..directory..'"')
-  for filename in pfile:lines() do
-      i = i + 1
-      t[i] = filename
+function requireFiles(filePath)
+  -- iterate over directories
+  for dir in io.popen([[dir "]] .. filePath .. [[" /b /ad]]):lines() do 
+    print(dir) 
   end
-  pfile:close()
-  return t
+
+  -- iterate over files
+  for file in io.popen([[dir "]] .. filePath .. [[" /b]]):lines() do 
+    print(file) 
+  end
 end
 
+requireFiles("dist/compile")
+
 -- setup any compiletime ts classes
-CeresUnit = require("compile.lib.CeresUnit").CeresUnit
+--CeresUnit = require("compile.lib.CeresUnit").CeresUnit
 
 --compiletime = function(fn) end
 --require("compile.index");
