@@ -1,12 +1,12 @@
 import { LibraryLoader } from 'war3-library-loader';
 import { MapPlayer, Timer, Unit } from 'w3ts';
-import { exportMetadata } from 'compile/index';
 import { UnitIds } from 'compile/unitIds';
 
-function tsMain() {
-  // example exposing data from the compile stage to the script
-  let metadata = compiletime(exportMetadata);
+compiletime(() => {
+  require('compile.index');
+});
 
+function tsMain() {
   const unit = new Unit(MapPlayer.fromIndex(0), FourCC(UnitIds.Foo), 0, 0, 270);
 
   new Timer().start(1.00, true, () => {
