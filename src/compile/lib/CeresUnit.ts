@@ -1,4 +1,4 @@
-import { CeresCurrentMap } from "compile/ceresDefs";
+import { CeresCurrentMap } from "compile/lib/ceresDefs";
 
 declare let currentMap: CeresCurrentMap;
 
@@ -25,6 +25,10 @@ export class CeresUnit {
   
   get name(): string { 
     return this.u.Name;
+  }
+
+  public static test(): void {
+    print("test");
   }
 
 }

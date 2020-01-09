@@ -1,9 +1,6 @@
 import { CeresUnit } from "./lib/CeresUnit";
-import { currentMap } from "./ceresDefs";
+import { currentMap } from "./lib/ceresDefs";
 import { FooUnit } from "./units/foo";
-
-//_G.CeresUnit = require("lib.CeresUnit").CeresUnit;
-
 
 compiletime(() => {
   let unitDefs: CeresUnit[] = [];
@@ -13,7 +10,7 @@ compiletime(() => {
 
   // add unit defs
   unitDefs.push(new CeresUnit('HfoA', 'Hblm'));
-  //unitDefs.push(new FooUnit());
+  unitDefs.push(new FooUnit());
 
   // create units
   print("creating units");
