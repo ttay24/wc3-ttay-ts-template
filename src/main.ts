@@ -2,8 +2,20 @@ import { LibraryLoader } from 'war3-library-loader';
 import { MapPlayer, Timer, Unit } from 'w3ts';
 import { UnitIds } from 'compile/unitIds';
 
+declare let print: (s: string) => void;
+
 compiletime(() => {
-  require('compile.index');
+  let origPrint = print;
+  print = (str: string) => { origPrint("  " + str); };
+  origPrint("compiling...");
+  let [ok, err] = pcall(require, 'compile.index');
+  if (!ok) {
+    origPrint("Error while compiling");
+    origPrint(err);
+  }
+  else {
+    origPrint("done compiling");
+  }
 });
 
 function tsMain() {

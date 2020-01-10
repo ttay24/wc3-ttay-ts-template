@@ -12,7 +12,8 @@
   "dependencies": {
     "w3ts": "^1.0.0",
     "war3-library-loader": "^1.0.0",
-    "war3-types": "^1.0.0"
+    "war3-types": "^1.0.0",
+    "wc3-ts-ceres": "^1.0.2"
   },
   "description": ""
 }

@@ -1,4 +1,4 @@
-import { CeresUnit } from "compile/lib/CeresUnit";
+import { CeresUnit } from "wc3-ts-ceres";
 import { UnitIds } from "compile/unitIds";
 
 export class FooUnit extends CeresUnit {
