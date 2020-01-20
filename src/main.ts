@@ -34,5 +34,5 @@ function libLoaderLog(libName: string, success: boolean, message: string) {
 }
 
 LibraryLoader.logFunction = libLoaderLog;
-ceres.addHook("main::after", () => LibraryLoader.runInitializers());
-ceres.addHook("main::after", () => tsMain());
+LibraryLoader.runInitializers();
+tsMain();
