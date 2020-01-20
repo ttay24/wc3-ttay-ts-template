@@ -12,6 +12,7 @@ compiletime(() => {
   if (!ok) {
     origPrint("Error while compiling");
     origPrint(err);
+    os.exit(-1);
   }
   else {
     origPrint("done compiling");
