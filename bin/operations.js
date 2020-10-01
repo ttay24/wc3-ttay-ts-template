@@ -61,19 +61,34 @@ switch (operation) {
     //fs.writeFileSync("ceres.toml", '[run]\nwc3_start_command=""');
 
     // build war3map.lua with ceres
-    execFile("./bin/ceres", ["build", "--", "--map", config.mapFolder], function (err, data) {
+    stderror_messages = false
+    ceres = execFile("./bin/ceres", ["build", "--", "--map", config.mapFolder], function (err, data) {
       if (data.length > 0) 
         console.log(data);
       if (err != null) {
         console.error(err);
         console.error("There was an error launching ceres.");
-        return;
       }
+    })
+    stderror_messages = false;
+    ceres.stderr.on(
+      'data',
+      function (data) {
+        lines = data.split("\n")
+        stderror_messages = lines.some(l=>l.startsWith("> ERR:"));
+        log = stderror_messages ? console.error : console.log;
+        log(lines.join("\n  "))
+      }
+    )
+    ceres.addListener("exit", function (code, signal){
 
-      // remove ceres.toml, we don't need multiple config files for the same thing
-      //fs.unlinkSync("ceres.toml");
-
-      console.log(`Completed!`);
+      if(code !== 0) {
+        console.error("Failure! (return code: {}".format(code));
+      } else if(stderror_messages) {
+        console.error("Failure!");
+      } else {
+        console.log(`Completed!`);
+      }
     });
 
     break;
