@@ -17,7 +17,7 @@ end
 -- setup ceres layout
 ceres.layout = {
   mapsDirectory = "maps/",
-  srcDirectory = "dist/",
+  srcDirectories = {"dist/"},
   libDirectory = "lib//",
   targetDirectory = "build/"
 }
